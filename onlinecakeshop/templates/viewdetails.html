@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+
+{%block title%} ViewDetails {%endblock%}
+
+{% block content %}
+   <h1>View Details...</h1>
+   <form method="POST" action="/addtocart">
+      {% csrf_token %}
+      <table class="table">
+         {% for cake in cakes %}
+         <tr><td>Cake Name</td><td>{{cake.cakename}}</td></tr>
+         <tr><td>Cake Price</td><td>{{cake.price}}</td></tr>
+         <tr><td>Cake Description</td><td>{{cake.description}}</td></tr>
+         <tr><td>Cake Category</td><td>{{cake.category}}</td></tr>
+         <tr><td>Quantity</td><td><select name="quantity" >
+             <option>1</option>
+             <option>2</option>
+             <option>3</option>
+             <option>4</option>
+             <option>5</option></select></td>
+         </tr>
+         <input type="hidden" name='cake_id' value= {{cake.id}} >
+         <tr><td>
+             <button class="button btn-success" type="submit">Add To Cart</button>
+         </td></tr>
+         {%endfor%}
+      </table>
+   </form>
+{%endblock%}

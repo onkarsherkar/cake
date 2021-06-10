@@ -1,0 +1,32 @@
+
+{%extends 'master.html'%}
+
+{%block content%}
+    <table class="table">
+        <tr>
+            <th>Cake Name</th>
+            <th>Price</th>
+            <th>description</th>
+            <th>category</th>
+            <th>Quantity</th>
+            <th>Remove</th>
+        </tr>
+        {% for item in cart %}
+            <form method="POST" action="/removefromcart">
+                {%csrf_token%}
+                <tr>
+                    <td>{{item.cake.cakename}}</td>
+                    <td>{{item.cake.price}}</td>
+                    <td>{{item.cake.description}}</td>
+                    <td>{{item.cake.category}}</td>
+                    <td>{{item.qty}}</td>
+                    <input type="hidden" name='cart_id' value="{{item.id}}">
+                    <td><button type="submit" class="button btn-danger">Remove</button></td>
+                </tr>
+        </form>
+        {%endfor%}
+    </table>
+    <hr>
+    <h2>Total : {{total}}</h2>
+    <hr>
+{%endblock%}

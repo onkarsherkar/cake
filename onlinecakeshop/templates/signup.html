@@ -1,0 +1,24 @@
+{% extends 'master.html' %}
+
+{%block title%} Signup {%endblock%}
+
+{% block content %}
+   {%if messages%}
+   {%for message in messages%}
+      <div class="alert alert-{{message.extra_tags}}" role="alert">
+         {{message}}
+      </div>
+   {%endfor%}
+   {%endif%}
+   <h1>Sign Up ...</h1>
+   <form method="POST">
+      {% csrf_token %}
+      <table class="table">
+         <tr><td>Enter Username</td><td><input type="text" name='username' required></td></tr>         
+         <tr><td>Enter Password</td><td><input type="password" name='password' required></td></tr>
+         <tr><td>
+             <button class="button btn-success" type="submit">Register</button>
+         </td></tr>
+      </table>
+   </form>
+{%endblock%}
